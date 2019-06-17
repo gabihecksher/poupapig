@@ -6,17 +6,13 @@
         <div>
             <h1><a href="/">PoupaPig</a></h1>
         </div>
-
+        {% for expense in expenses %}
         <div>
-            <p>publicado: 14.06.2014, 12:14</p>
-            <h2><a href="">Meu primeiro post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        	<p>Descricao: {{expense.description}}</p>
+        	<p>Valor: {{expense.amount}} </p>
+        	<p>Categoria: {{expense.categorie.name}}</p>
+        	<p>Data: {{expense.date}}</p>
         </div>
-
-        <div>
-            <p>publicado: 14.06.2014, 12:14</p>
-            <h2><a href="">Meu segundo post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-        </div>
+        {% endfor %}
     </body>
 </html>

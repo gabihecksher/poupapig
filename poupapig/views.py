@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import Expense, Categorie
 
 def expense_list(request):
-	return render(request, 'poupapig/expense_list.html', {})
+	expenses = Expense.objects.all()
+	return render(request, 'poupapig/expense_list.html', {'expenses': expenses})
