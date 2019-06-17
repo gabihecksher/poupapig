@@ -1,10 +1,13 @@
+{% load static %}
+
 <html>
     <head>
         <title>PoupaPig</title>
+        <link rel="stylesheet" href="{% static 'css/poupapig.css' %}">
     </head>
     <body>
         <div>
-            <h1><a href="/">PoupaPig</a></h1>
+            <h1>PoupaPig</h1>
         </div>
         {% for expense in expenses %}
         <div>

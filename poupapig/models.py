@@ -10,7 +10,7 @@ class Categorie(models.Model):
 class Expense(models.Model):
 	user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 	categorie = models.ForeignKey('Categorie', on_delete=models.CASCADE, blank=True, null=True, default=None)
-	date = models.DateTimeField(blank=True, null=True)
+	date = models.DateField(blank=True, null=True)
 	amount = models.FloatField(null=True, blank=True, default=None)
 	description = models.TextField()
 
