@@ -15,7 +15,6 @@ def index(request):
 
 def user_login(request):
 	if request.method == 'POST':
-		console.log("eh post")
 		form = LoginForm(request.POST)
 		if form.is_valid():
 			cd = form.cleaned_data
