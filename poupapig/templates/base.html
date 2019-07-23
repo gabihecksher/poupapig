@@ -6,6 +6,10 @@
     </head>
     <body>
         <h1>POUPA PIG</h1>
+        <a href="{% url 'index' %}">Home</a> /
+        <a href="{% url 'signup' %}">Sign Up</a> /
+        <a href="{% url 'login' %}">Log In</a> /
+        <hr>
         {% block content %}
         {% endblock %}
     </body>
