@@ -1,5 +1,15 @@
 {% extends '../base.html' %}
+{% load staticfiles %}
 {% block content %}
-    <h2>{{ user.username }}</h2>
-    <a href="{% url 'logout' %}">Log out</a>
+    <div class="sidenav">
+        <h2> {{user.username}} </h2>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="{% url 'logout' %}">Logout</a>
+     </div>
+      
+    <div class="main">
+        <h2>Lançar despesa</h2>
+    </div>
 {%  endblock %}
