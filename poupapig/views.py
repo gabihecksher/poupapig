@@ -48,12 +48,18 @@ def user_infos(request):
 	else:
 		return redirect('login')
 
+
 def create_category(request):
+    user = request.user
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
-            form.save()
-    else:
+            category = form.save(commit=False) # commit=False avisa pra nao colocar no BD ainda porque tem mais coisa pra adicionar
+            category.user = request.user
+            category.save()
+
+            return redirect('show_categories')
+    else:   
         form = CategoryForm()
     return render(request, 'new_category.html', {'form': form})
 
