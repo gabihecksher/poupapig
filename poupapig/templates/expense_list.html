@@ -5,12 +5,14 @@
     
     {% block content %}
         {% for expense in expenses %}
-        <div>
-        	<p>Descricao: {{expense.description}}</p>
-        	<p>Valor: {{expense.amount}} </p>
-        	<p>Categoria: {{expense.categorie.name}}</p>
-        	<p>Data: {{expense.date}}</p>
-        </div>
+            {% if expense.user == user %}    
+                <div>
+                    <p>Descricao: {{expense.description}}</p>
+                    <p>Valor: {{expense.amount}} </p>
+                    <p>Categoria: {{expense.categorie.name}}</p>
+                    <p>Data: {{expense.date}}</p>
+                </div>
+            {% endif %}
         {% endfor %}
     {% endblock %}
 </html>

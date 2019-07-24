@@ -15,7 +15,10 @@ def expense_list(request):
 	return render(request, 'expense_list.html', {'expenses': expenses})
 
 def index(request):
-	return render(request, 'index.html', {})
+    if request.user.is_authenticated:
+        return redirect('profile')
+    else:
+        return render(request, 'index.html', {})
 
 # def user_login(request):
 # 	if request.method == 'POST':
