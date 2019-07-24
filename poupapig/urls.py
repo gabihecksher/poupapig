@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
 	path('expenses', views.expense_list, name='expense_list'),
+	path('new_expense', views.create_expense, name='new_expense'),
 	path('categories', views.show_categories, name='show_categories'),
 	path('new_category', views.create_category, name='new_category'),
 	path('', views.index, name='index'),

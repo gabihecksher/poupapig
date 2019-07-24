@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from poupapig.models import Profile, Category
+from poupapig.models import Profile, Category, Expense
 from django.contrib.auth.forms import UserCreationForm
 
 # class CategoryForm(forms.Form):
@@ -18,6 +18,12 @@ class CategoryForm(forms.ModelForm):
 	class Meta:
 		model = Category
 		fields = ('name',)
+
+class ExpenseForm(forms.ModelForm):
+	class Meta:
+		model = Expense
+		fields = ('category', 'date', 'amount', 'description',)
+
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label='Nome', max_length=100)

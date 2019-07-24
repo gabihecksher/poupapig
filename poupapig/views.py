@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, CategoryForm
+from .forms import SignUpForm, CategoryForm, ExpenseForm
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
@@ -62,6 +62,19 @@ def create_category(request):
     else:   
         form = CategoryForm()
     return render(request, 'new_category.html', {'form': form})
+
+def create_expense(request):
+    if request.method == 'POST':
+        print("eh post")
+        form = ExpenseForm(request.POST)
+        if form.is_valid():
+            print("form valido")
+            form.save()
+            return redirect('expense_list')
+    else:
+        print("eh get")
+        form = ExpenseForm()
+    return render(request, 'new_expense.html', {'form': form})
 
 def show_categories(request):
 	categories = Category.objects.all()
