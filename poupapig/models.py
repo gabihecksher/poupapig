@@ -5,14 +5,14 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-class Categorie(models.Model):
+class Category(models.Model):
+	user = models.ForeignKey('auth.User', default="", on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	def __str__(self):
 		return self.name
 
 class Expense(models.Model):
-	user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-	categorie = models.ForeignKey('Categorie', on_delete=models.CASCADE, blank=True, null=True, default=None)
+	category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True, null=True, default=None)
 	date = models.DateField(blank=True, null=True)
 	amount = models.FloatField(null=True, blank=True, default=None)
 	description = models.TextField()

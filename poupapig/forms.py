@@ -1,8 +1,13 @@
 from django import forms
 from django.contrib.auth.models import User
-from poupapig.models import Profile
+from poupapig.models import Profile, Category
 from django.contrib.auth.forms import UserCreationForm
 
+class CategoryForm(forms.Form):
+	class Meta:
+		model = Category
+		fields = ('name', )
+		
 class LoginForm(forms.Form):
 	username = forms.CharField(label='Nome', max_length=100)
 	password = forms.CharField(label='Senha', widget=forms.PasswordInput)

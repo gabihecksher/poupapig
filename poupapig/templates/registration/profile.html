@@ -2,14 +2,16 @@
 <!doctype html>
 <html>
     <head>
-        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'css/style_profile.css' %}" rel="stylesheet">
         <meta charset="utf-8">
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
         <div class="sidenav">
-            <h2> {{user.username}} </h2>
+            <h2> {{user.first_name}} </h2>
+            <p> @{{user.username}} </p>
             <a href="{% url 'user_infos' %}">Meu perfil</a>
+            <a href="{% url 'show_categories' %}">Categorias</a>
             <a href="{% url 'expense_list' %}">Despesas</a>
             <a href="{% url 'logout' %}">Logout</a>
         </div>

@@ -4,15 +4,23 @@
 <html>
     
     {% block content %}
-        {% for expense in expenses %}
-            {% if expense.user == user %}    
-                <div>
-                    <p>Descricao: {{expense.description}}</p>
-                    <p>Valor: {{expense.amount}} </p>
-                    <p>Categoria: {{expense.categorie.name}}</p>
-                    <p>Data: {{expense.date}}</p>
-                </div>
-            {% endif %}
-        {% endfor %}
+        <table>
+            <tr>
+                <th>Categoria</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Descrição</th>
+            </tr>
+            {% for expense in expenses %}
+                {% if expense.category.user == user %}
+                    <tr>
+                        <td>{{expense.category.name}}</td>
+                        <td>{{expense.date}}</td>
+                        <td>{{expense.amount}}</td>
+                        <td>{{expense.description}}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
     {% endblock %}
 </html>

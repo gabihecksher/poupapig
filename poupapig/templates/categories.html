@@ -1,0 +1,21 @@
+{% extends 'registration/profile.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Total gasto</th>
+        </tr>
+        {% for category in categories %}
+            {% if category.user == user %}
+                <tr>
+                    <td>{{category.name}}</td>
+                    <td>R$0,00</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+        
+    <a href="{% url 'new_category' %}">Criar categoria</a>
+{% endblock %}
