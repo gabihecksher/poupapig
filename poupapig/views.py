@@ -65,15 +65,14 @@ def create_category(request):
 
 def create_expense(request):
     if request.method == 'POST':
-        print("eh post")
-        form = ExpenseForm(request.POST)
+        form = ExpenseForm(request.user, request.POST)
         if form.is_valid():
-            print("form valido")
-            form.save()
+            expense = form.save(commit=False)
+            expense.user = request.user
+            expense.save()
             return redirect('expense_list')
     else:
-        print("eh get")
-        form = ExpenseForm()
+        form = ExpenseForm(request.user)
     return render(request, 'new_expense.html', {'form': form})
 
 def show_categories(request):
