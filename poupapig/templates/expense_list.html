@@ -1,14 +1,9 @@
+{% extends 'registration/profile.html' %}
 {% load staticfiles %}
 
 <html>
-    <head>
-        <title>PoupaPig</title>
-        <link rel="stylesheet" href="{% static 'css/poupapig.css' %}">
-    </head>
-    <body>
-        <div>
-            <h1>PoupaPig</h1>
-        </div>
+    
+    {% block content %}
         {% for expense in expenses %}
         <div>
         	<p>Descricao: {{expense.description}}</p>
@@ -17,5 +12,5 @@
         	<p>Data: {{expense.date}}</p>
         </div>
         {% endfor %}
-    </body>
+    {% endblock %}
 </html>

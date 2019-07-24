@@ -7,14 +7,24 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-        {% if not user.is_authenticated %}
-            <h1>POUPA PIG</h1>
-            <a href="{% url 'index' %}">Home</a> /
-            <a href="{% url 'signup' %}">Sign Up</a> /
-            <a href="{% url 'login' %}">Log In</a> /
-            <hr>
-        {% endif %}
-
+            {% if user.is_authenticated %}
+            <div class="sidenav">
+                    <h2> {{user.username}} </h2>
+                    <a href="#">Meu perfil</a>
+                    <a href="{% url 'expense_list' %}">Despesas</a>
+                    <a href="{% url 'logout' %}">Logout</a>
+                 </div>
+            {% else %}
+            <div id="menu">
+                <ul>
+                    <li><a>POUPA PIG</a></li>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+                </ul>
+            </div>
+            {% endif %}
+        
         {% block content %}
         {% endblock %}
     </body>

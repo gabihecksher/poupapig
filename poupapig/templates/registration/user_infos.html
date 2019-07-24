@@ -1,0 +1,13 @@
+{% extends './profile.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <form>
+        Username: <input type="text" name="username" value="{{user.username}}" readonly><br>
+        Nome: <input type="text" name="first_name" value="{{user.first_name}}" readonly><br>
+        Sobrenome: <input type="text" name="last_name" value="{{user.last_name}}" readonly><br>
+        E-mail: <input type="text" name="email" value="{{user.email}}" readonly><br>
+
+        <input type="submit" value="Submit">
+    </form>
+{%  endblock %}

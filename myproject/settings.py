@@ -127,3 +127,5 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL='profile'
 LOGOUT_REDIRECT_URL='index'
+
+# AUTH_PROFILE_MODULE = 'accounts.UserProfile'
