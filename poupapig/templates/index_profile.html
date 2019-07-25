@@ -1,0 +1,11 @@
+{% extends 'registration/base_profile.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <div class="chart-container" style="position: relative; height:20vh; width:40vw">
+        <canvas id="chart"></canvas>
+    </div>
+    <script type="text/javascript" src="{% static 'javascript/chart.js' %}"></script>
+
+{%  endblock %}

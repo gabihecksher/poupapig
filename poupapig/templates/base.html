@@ -7,14 +7,15 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-            <div id="menu">
-                <ul>
-                    <li><a>POUPA PIG</a></li>
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}">Log In</a></li>
-                </ul>
-            </div>
+        <div id="menu">
+            <ul>
+                <li><a>POUPA PIG</a></li>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a href="{% url 'login' %}">Log In</a></li>
+            </ul>
+        </div>
+        
             
         {% block content %}
         {% endblock %}

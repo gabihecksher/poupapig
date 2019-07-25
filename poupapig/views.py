@@ -16,7 +16,7 @@ def expense_list(request):
 
 def index(request):
     if request.user.is_authenticated:
-        return redirect('profile')
+        return redirect('index_profile')
     else:
         return render(request, 'index.html', {})
 
@@ -38,7 +38,7 @@ def signup(request):
 
 def profile(request):
 	if request.user.is_authenticated:
-		return render(request, 'registration/profile.html')
+		return redirect('index_profile')
 	else:
 		return redirect('login')
 
@@ -78,3 +78,6 @@ def create_expense(request):
 def show_categories(request):
 	categories = Category.objects.all()
 	return render(request, 'categories.html', {'categories': categories})
+
+def index_profile(request):
+    return render(request, 'index_profile.html')

@@ -10,6 +10,7 @@
         <div class="sidenav">
             <h2> {{user.first_name}} </h2>
             <p> @{{user.username}} </p>
+            <a href="{% url 'index_profile' %}">Início</a>
             <a href="{% url 'user_infos' %}">Meu perfil</a>
             <a href="{% url 'show_categories' %}">Categorias</a>
             <a href="{% url 'expense_list' %}">Despesas</a>
