@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm, CategoryForm, ExpenseForm
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+import json
 
 
 def expense_list(request):
@@ -80,4 +81,21 @@ def show_categories(request):
 	return render(request, 'categories.html', {'categories': categories})
 
 def index_profile(request):
-    return render(request, 'index_profile.html')
+    queryset_categories = Category.objects.filter(user = request.user) # todas as categorias do usuario
+    name_categories = [obj.name for obj in queryset_categories] # lista com o nome das categorias
+    
+    expenses  = Expense.objects.all()
+    
+    total_per_category = []
+    for category in queryset_categories:
+        total = 0
+        for expense in expenses:
+            if expense.category == category:
+                total += expense.amount
+        total_per_category.append(total) # vetor com o total gasto em cada categoria
+
+    context = {
+         'name_categories': json.dumps(name_categories),
+         'total_per_category': json.dumps(total_per_category),
+     }
+    return render(request, 'index_profile.html', context)
