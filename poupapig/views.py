@@ -12,8 +12,9 @@ import json
 
 
 def expense_list(request):
-	expenses = Expense.objects.all()
-	return render(request, 'expense_list.html', {'expenses': expenses})
+    categories = Category.objects.filter(user = request.user)
+    expenses = Expense.objects.filter(category__in=categories)
+    return render(request, 'expense_list.html', {'expenses': expenses, 'categories': categories})
 
 def index(request):
     if request.user.is_authenticated:

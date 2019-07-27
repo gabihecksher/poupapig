@@ -2,9 +2,16 @@
 {% load staticfiles %}
 
 <html>
-    
     {% block content %}
-        <table>
+
+        <select id="select_category" onchange="filterByCategory()">
+            <option value=0>-------------</option>
+            {% for category in categories %}
+                <option value="{{category.name}}">{{category.name}}</option>
+            {% endfor %}
+        </select>
+
+        <table id="table">
             <tr>
                 <th>Categoria</th>
                 <th>Data</th>
@@ -23,5 +30,27 @@
             {% endfor %}
         </table>
         <a href="{% url 'new_expense' %}">Criar despesa</a>
+
+        <script>
+            function filterByCategory(){
+                var category = document.getElementById("select_category").value;
+                
+                table = document.getElementById("table");
+                tr = table.getElementsByTagName("tr");
+
+                for(i=0;i<tr.length;i++){
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if(td){
+                        column_value = td.innerText;
+                        if(category==0 || column_value.indexOf(category)>-1){
+                            tr[i].style.display = "";
+                        } else{
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+
+            }
+        </script>
     {% endblock %}
 </html>
