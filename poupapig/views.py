@@ -44,6 +44,10 @@ def profile(request):
 	else:
 		return redirect('login')
 
+def show_expense(request,expense_id):
+    expense = Expense.objects.filter(id=expense_id)[0]
+    return render(request, 'expense.html', {'expense':expense})
+
 def user_infos(request):
 	if request.user.is_authenticated:
 		return render(request, 'registration/user_infos.html')

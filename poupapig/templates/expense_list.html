@@ -3,28 +3,27 @@
 
 <html>
     {% block content %}
-
+        
         <select id="select_category" onchange="filterByCategory()">
-            <option value=0>-------------</option>
+            <option value=0>Categoria</option>
             {% for category in categories %}
                 <option value="{{category.name}}">{{category.name}}</option>
             {% endfor %}
         </select>
 
+        <p>Clique no valor para ver os detalhes de cada despesa</p>
+
         <table id="table">
             <tr>
-                <th>Categoria</th>
-                <th>Data</th>
                 <th>Valor</th>
-                <th>Descrição</th>
+                <th>Data</th>
             </tr>
             {% for expense in expenses %}
                 {% if expense.category.user == user %}
                     <tr>
-                        <td>{{expense.category.name}}</td>
+                        <td style="display:none;">{{expense.category.name}}</td>  
+                        <td onclick="showExpense('{{expense.id}}')">R${{expense.amount}}</td>
                         <td>{{expense.date}}</td>
-                        <td>{{expense.amount}}</td>
-                        <td>{{expense.description}}</td>
                     </tr>
                 {% endif %}
             {% endfor %}
@@ -50,6 +49,10 @@
                     }
                 }
 
+            }
+
+            function showExpense(expense_id){
+                window.open(expense_id, "", "width=500,height=500");
             }
         </script>
     {% endblock %}
