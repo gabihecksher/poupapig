@@ -89,18 +89,39 @@ def index_profile(request):
     queryset_categories = Category.objects.filter(user = request.user) # todas as categorias do usuario
     name_categories = [obj.name for obj in queryset_categories] # lista com o nome das categorias
     
-    expenses  = Expense.objects.all()
+    expenses  = Expense.objects.all().order_by('date')
     
     total_per_category = []
+
+    expenses_amount = []
+    expenses_date = []
+    
+    expenses_per_category = []
+    dates_per_category = []
+    
     for category in queryset_categories:
         total = 0
         for expense in expenses:
             if expense.category == category:
                 total += expense.amount
+                expenses_per_category.append(expense.amount)
+                dates_per_category.append(expense.date)
+        expenses_amount.append(expenses_per_category)
+        expenses_date.append(dates_per_category)
         total_per_category.append(total) # vetor com o total gasto em cada categoria
+        expenses_per_category=[]
+        dates_per_category=[]
+    
+    print("--------------------")
+    print(expenses_amount)
+    print(expenses_date)
 
     context = {
          'name_categories': json.dumps(name_categories),
          'total_per_category': json.dumps(total_per_category),
+
+        # DOIS VETORES DE VETORES, UM DELES COM TODOS OS VALORES GASTOS POR CATEGORIA E O OUTRO COM AS RESPECTIVAS DATAS, TUDO ORGANIZADO POR DATA 
+        #  'amounts_per_category': json.dumps(expenses_amount),
+        #  'dates_per_category': json.dumps(expenses_date),
      }
     return render(request, 'index_profile.html', context)
