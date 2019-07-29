@@ -7,16 +7,30 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-        <div id="menu">
+       <!-- <div id="menu">
             <ul>
                 <li><a>POUPA PIG</a></li>
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
                 <li><a href="{% url 'login' %}">Log In</a></li>
             </ul>
+        </div> -->
+        <!-- <div class="register-switch">
+            <input type="radio" name="sex" value="F" id="sex_f" class="register-switch-input" checked>
+            <label for="sex_f" class="register-switch-label" >Entrar</label>
+            <input type="radio" name="sex" value="M" id="sex_m" class="register-switch-input">
+            <label for="sex_m" class="register-switch-label">Cadastro</label>
+        </div> -->
+
+        <div id="buttons">
+            <a href="{% url 'login' %}" class="button" id="buttonLogin">Log In</a>
+            <a href="{% url 'signup' %}" class="button" id="buttonSignup">Sign Up</a>
         </div>
-        
-            
+
+        <img id="img" src="{% static 'images/pig.png' %}">
+        <!-- <div class="button" align="center"><a class="example_a" href="{% url 'login' %}" target="_blank" rel="nofollow noopener">Log In</a></div>
+        <div class="button" align="center"><a class="example_a" href="{% url 'signup' %}" target="_blank" rel="nofollow noopener">Sign Up</a></div>
+             -->
         {% block content %}
         {% endblock %}
     </body>
