@@ -20,7 +20,7 @@ def index(request):
     if request.user.is_authenticated:
         return redirect('index_profile')
     else:
-        return render(request, 'index.html', {})
+        return redirect('login')
 
 def signup(request):
     if request.method == 'POST':

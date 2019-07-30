@@ -5,11 +5,13 @@
     <p style="color: red">Your username and password didn't match. Please try again.</p>
   {% endif %}
   <div id="loginForm">
+    <h1>Poupa Pig</h1>
     <form method="post">
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ next }}" />
       {% for field in form %}
         <p>
+            {{ field.label_tag }}<br>
           {{ field }}<br>
           {% for error in field.errors %}
             <p style="color: red">{{ error }}</p>

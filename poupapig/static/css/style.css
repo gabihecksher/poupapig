@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 body {  
   background-color: #5DA5A1; 
+  color: #534B62;
+  font-family: 'Muli', sans-serif;
 }
 
+h1{
+  font-family: 'Pacifico', cursive;
+  font-size: 400%;
+}
 .button {
   color: #fff !important;
   text-transform: uppercase;
@@ -52,20 +60,29 @@ input{
 }
 
 form{
-  z-index: 1;
+  z-index: -1;
   text-align: center;
   margin: 0 auto; 
-  margin-top: 100px;
   width:500px;
 }
 
 #loginForm {
-  opacity: 0.8;
   text-align: center;
   margin: 0 auto; 
   margin-top: 250px;
   width: 550px;
   padding: 20px;
-  background-color: #fffafa;
+  background-color: rgba(255, 250, 250, 0.8);
+  border-radius: 12px;
+}
+
+
+#signupForm {
+  text-align: center;
+  margin: 0 auto; 
+  margin-top: 250px;
+  width: 550px;
+  padding: 20px;
+  background-color: rgba(255, 250, 250, 0.8);
   border-radius: 12px;
 }
