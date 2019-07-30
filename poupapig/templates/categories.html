@@ -7,15 +7,15 @@
             <th>Nome</th>
             <th>Total gasto</th>
         </tr>
-        {% for category in categories %}
-            {% if category.user == user %}
-                <tr>
-                    <td>{{category.name}}</td>
-                    <td>R$0,00</td>
-                </tr>
-            {% endif %}
-        {% endfor %}
+            
+                {% for ct in total_per_category %}
+                    <tr>
+                        <td>{{ct.0}}</td>
+                        <td>{{ct.1}}</td>
+                    </tr>
+                {% endfor %}
+                
     </table>
         
-    <a href="{% url 'new_category' %}">Criar categoria</a>
+    <a href="{% url 'new_category' %}" class="button">Criar nova categoria</a>
 {% endblock %}

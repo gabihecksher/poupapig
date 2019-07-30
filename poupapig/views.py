@@ -81,9 +81,39 @@ def create_expense(request):
         form = ExpenseForm(request.user)
     return render(request, 'new_expense.html', {'form': form})
 
+# def show_categories(request):
+# 	categories = Category.objects.all()
+#     expenses  = Expense.objects.all()
+#     total_per_category = []
+    
+#     for category in categories:
+#         total = 0
+#         for expense in expenses:
+#             if expense.category == category:
+#                 total += expense.amount
+#         total_per_category.append(total) # vetor com o total gasto em cada categoria
+    
+#     print(total_per_category)
+    
+# 	return render(request, 'categories.html', {'categories': categories, 'total_per_category': total_per_category})
+
 def show_categories(request):
-	categories = Category.objects.all()
-	return render(request, 'categories.html', {'categories': categories})
+    categories = Category.objects.filter(user = request.user)
+    expenses = Expense.objects.all()
+    total_per_category = []
+
+    print("----------------------------")
+    for category in categories:
+        total = 0
+        for expense in expenses:
+            if expense.category == category:
+                total += expense.amount
+        tup = (category, total)
+        print(tup)
+        total_per_category.append(tup)
+
+    print(total_per_category)
+    return render(request, 'categories.html', {'total_per_category': total_per_category})
 
 def index_profile(request):
     queryset_categories = Category.objects.filter(user = request.user) # todas as categorias do usuario

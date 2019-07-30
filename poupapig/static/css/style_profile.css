@@ -1,32 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
-body {
-    background-color: #80CED7;
-    padding-left: 15px;
+body {  
+  background-color: #5DA5A1; 
+  color: #534B62;
+  font-family: 'Muli', sans-serif;
+  padding-left: 40px;
+  text-align: center;
+
 }
 
-table, td, th {  
-    border: 1px solid #ddd;
-    text-align: left;
+.button {
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #534B62;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    margin-top: 20px;
+}
+
+
+input{
+    text-align: center;
+    font-size: 15px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    background-color: rgba(255, 250, 250, 0.2);
+    width: 200px;
+    height: 60px;
+    margin: 10px;
+}
+
+form{
+    z-index: -1;
+    text-align: center;
+    margin: 0 auto; 
+    
+    margin-top: 250px;
+    width: 550px;
+    padding: 20px;
+    background-color: rgba(255, 250, 250, 0.8);
+    border-radius: 12px;
+  }
+
+select{
+    border-radius:10px;
+    width:150px;
+    height: 40px;
+    font-size:15px;
+    background-color: rgba(255, 250, 250, 1);
+}
+
+table{
+    text-align: center;
+    margin: 0 auto; 
+    margin-top: 250px;
+    padding: 20px;
+    background-color: rgba(255, 250, 250, 0.8);
+    border-collapse: collapse;
+    width: 60%;
+
+    
+}
+
+table, th, td{
+    border: 2px solid #818181;
+    border-radius: 10px;
 }
   
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
   
 th, td {
     padding: 15px;
 }
  
 .sidenav {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
     left: 0;
-    background-color: #534B62; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
+    background-color: #534B62; 
+    overflow-x: hidden;
     padding-top: 20px;
 }
 
@@ -35,7 +93,7 @@ th, td {
     margin-bottom: 0px;
     text-decoration: none;
     font-size: 35px;
-    color: black;
+    color: #ebe9f0;
     display: block;
 }
 
