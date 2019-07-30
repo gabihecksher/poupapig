@@ -23,7 +23,7 @@ class LoginForm(forms.Form):
 	password = forms.CharField(label='Senha', widget=forms.PasswordInput)
 
 class SignUpForm(UserCreationForm):
-	birth_date = forms.DateField(help_text='Required. Format: YYYY-MM-DD')
+	birth_date = forms.DateField(label="Data de nascimento", help_text='Formato: AAAA-MM-DD')
 	class Meta:
 		model = User
 		fields = ('username', 'birth_date', 'first_name', 'last_name', 'email', 'password1', 'password2', )
