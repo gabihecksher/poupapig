@@ -1,6 +1,10 @@
 {% extends '../base.html' %}
 {% load staticfiles %}
 {% block content %}
+  <div id="buttons">
+      <a href="{% url 'login' %}" class="button" id="buttonLoginActive">Log In</a>
+      <a href="{% url 'signup' %}" class="button" id="buttonSignup">Sign Up</a>
+  </div>
   {% if form.errors %}
     <p style="color: red">Your username and password didn't match. Please try again.</p>
   {% endif %}

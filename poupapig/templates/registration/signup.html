@@ -2,6 +2,10 @@
 {% load staticfiles %}
 
 {% block content %}
+  <div id="buttons">
+      <a href="{% url 'login' %}" class="button" id="buttonLogin">Log In</a>
+      <a href="{% url 'signup' %}" class="button" id="buttonSignupActive">Sign Up</a>
+  </div>
   <div id="signupForm">
       <h1>Poupa Pig</h1>
     <form method="post">

@@ -7,13 +7,6 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-       
-        <div id="buttons">
-            <a href="{% url 'login' %}" class="button" id="buttonLogin">Log In</a>
-            <a href="{% url 'signup' %}" class="button" id="buttonSignup">Sign Up</a>
-        </div>
-
-        <!-- <img id="img" src="{% static 'images/pig.png' %}"> -->
         {% block content %}
         {% endblock %}
     </body>
