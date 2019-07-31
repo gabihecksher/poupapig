@@ -118,10 +118,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    'Documentos/inoa/poupapig/poupapig/static',
-]
+STATIC_ROOT = 'home/gabriela/Documentos/inoa/poupapig/poupapig/static'
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'poupapig/static'),
+#     'Documentos/inoa/poupapig/poupapig/static',
+# ]
 
 STATIC_URL = '/static/'
 

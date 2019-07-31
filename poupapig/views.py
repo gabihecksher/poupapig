@@ -142,13 +142,12 @@ def index_profile(request):
         expenses_per_category=[]
         dates_per_category=[]
     
-    print("--------------------")
-    print(expenses_amount)
-    print(expenses_date)
 
+    test = [total_per_category, name_categories]
     context = {
          'name_categories': json.dumps(name_categories),
          'total_per_category': json.dumps(total_per_category),
+         'test': json.dumps(test),
 
         # DOIS VETORES DE VETORES, UM DELES COM TODOS OS VALORES GASTOS POR CATEGORIA E O OUTRO COM AS RESPECTIVAS DATAS, TUDO ORGANIZADO POR DATA 
         #  'amounts_per_category': json.dumps(expenses_amount),
