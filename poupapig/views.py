@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, CategoryForm, ExpenseForm
+from .forms import SignUpForm, CategoryForm, ExpenseForm, IncomingForm
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 import json
@@ -85,6 +85,21 @@ def create_expense(request):
         form = ExpenseForm(request.user)
     return render(request, 'new_expense.html', {'form': form})
 
+def create_incoming(request):
+    if request.method == 'POST':
+        form = IncomingForm(request.POST)
+        if form.is_valid():
+            incoming = form.save(commit=False)
+            incoming.user = request.user
+            user = request.user
+            user.profile.account_balance = user.profile.account_balance + incoming.amount
+            user.save()
+            incoming.save()
+            return redirect('index_profile')
+    else:
+        form = IncomingForm()
+    return render(request, 'new_incoming.html', {'form': form})
+
 def show_categories(request):
     categories = Category.objects.filter(user = request.user)
     expenses = Expense.objects.all()
@@ -107,7 +122,7 @@ def index_profile(request):
     queryset_categories = Category.objects.filter(user = request.user) # todas as categorias do usuario
     name_categories = [obj.name for obj in queryset_categories] # lista com o nome das categorias
     
-    queryset_expenses  = Expense.objects.all().order_by('date')
+    queryset_expenses  = Expense.objects.filter(category__in = queryset_categories).order_by('date')
     amount_expenses = [obj.amount for obj in queryset_expenses]
     date_expenses = [obj.date for obj in queryset_expenses]
     

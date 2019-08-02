@@ -3,17 +3,19 @@
 
 {% block content %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <div class="chart-container" style="position: relative; height:20vh; width:40vw; margin:20px;">
+    <div class="chart-container" style="position: absolute; height:20vh; width:40vw; margin:20px;">
         <canvas id="chart"></canvas><br><br>
     </div>
 
     
-    <div style="background-color: rgba(255, 250, 250, 0.8); width: 200px; border-radius: 15px; margin-left: 60%; padding: 20px;">
+    <div style="background-color: rgba(255, 250, 250, 0.8); width: 200px; border-radius: 15px; margin-left: 60%; padding: 20px; position: absolute; top: 10%;">
         <h2>Saldo atual:</h2>
         <h3>R$ {{user.profile.account_balance}}</h3>
+        <a href="{% url 'new_incoming' %}" class="button" id="buttonNewIncoming"> + Lançar nova receita</a>
+        <a href="{% url 'new_expense' %}" class="button" id="buttonNewExpense"> - Lançar nova despesa</a>
     </div>
     
-    <div class="chart-container" style="position: relative; height:20vh; width:40vw; margin:20px;">
+    <div class="chart-container" style="position: absolute; height:20vh; width:40vw; margin:20px; top: 40%;">
         <canvas id="balanceChart" width="100" height="100"></canvas>
     </div>
 
@@ -74,7 +76,7 @@
             data: {
                 labels: dates,
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'Despesas',
                     data: amounts,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',

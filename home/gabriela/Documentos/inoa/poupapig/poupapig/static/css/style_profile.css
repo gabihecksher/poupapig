@@ -2,16 +2,14 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 body {  
-  background-color: yellow; 
+  background-color: #5DA5A1; 
   color: #534B62;
   font-family: 'Muli', sans-serif;
   padding-left: 40px;
   text-align: center;
 }
 
-#balance {
-    color: yellow;
-}
+
 
 .button {
     color: #fff !important;

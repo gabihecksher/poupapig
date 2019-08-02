@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from poupapig.models import Profile, Category, Expense
+from poupapig.models import Profile, Category, Expense, Incoming
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -17,6 +17,11 @@ class ExpenseForm(forms.ModelForm):
 	def __init__(self, user, *args, **kwargs):
 		super(ExpenseForm, self).__init__(*args, **kwargs)
 		self.fields['category'].queryset = Category.objects.filter(user=user)
+
+class IncomingForm(forms.ModelForm):
+	class Meta:
+		model = Incoming
+		fields = ('amount', 'date', 'description',)
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label='Nome', max_length=100)

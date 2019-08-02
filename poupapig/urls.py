@@ -8,6 +8,7 @@ urlpatterns = [
 	path('expenses/', views.expense_list, name='expense_list'),
 	path('expenses/<expense_id>', views.show_expense, name='show_expense'),
 	path('new_expense', views.create_expense, name='new_expense'),
+	path('new_incoming', views.create_incoming, name='new_incoming'),
 	path('categories', views.show_categories, name='show_categories'),
 	path('new_category', views.create_category, name='new_category'),
 	path('', views.index, name='index'),

@@ -20,6 +20,14 @@ class Expense(models.Model):
 	def __str__(self):
 		return self.description
 
+class Incoming(models.Model):
+	amount = models.FloatField(null=True, blank=True, default=None)
+	date = models.DateField(blank=True, null=True)
+	description = models.TextField()
+
+	def __str__(self):
+		return self.description
+
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	birth_date = models.DateField(null=True, blank=True)

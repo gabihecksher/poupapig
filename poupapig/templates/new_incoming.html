@@ -2,11 +2,10 @@
 {% load staticfiles %}
 
 {% block content %}
-  
-  <form action="new_expense" method="post" >
-      <h2>Criar despesa</h2><br>
+  <h2>Lançar receita</h2>
+  <form action="new_incoming" method="post" >
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="button" type="submit" value="submit">Criar</button>
+    <button class="button" type="submit" value="submit">Lançar</button>
    </form>
 {% endblock %}
