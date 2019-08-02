@@ -24,6 +24,7 @@ class LoginForm(forms.Form):
 
 class SignUpForm(UserCreationForm):
 	birth_date = forms.DateField(label="Data de nascimento", help_text='Formato: AAAA-MM-DD')
+	account_balance = forms.FloatField(label="Saldo atual")
 	class Meta:
 		model = User
-		fields = ('username', 'birth_date', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+		fields = ('username', 'birth_date', 'first_name', 'last_name', 'email', 'account_balance', 'password1', 'password2', )

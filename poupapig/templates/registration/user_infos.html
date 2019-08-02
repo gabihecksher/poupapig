@@ -9,5 +9,6 @@
         Sobrenome: <input type="text" name="last_name" value="{{user.last_name}}" readonly><br>
         Data de nascimento: <input type="text" name="date" value="{{user.profile.birth_date}}" readonly><br>
         E-mail: <input type="text" name="email" value="{{user.email}}" readonly><br>
+        Saldo atual: <input type="text" name="balance" value="R${{user.profile.account_balance}}" readonly><br>
     </form>
 {%  endblock %}

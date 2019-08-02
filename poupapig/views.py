@@ -29,6 +29,7 @@ def signup(request):
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
             user.profile.birth_date = form.cleaned_data.get('birth_date')
+            user.profile.account_balance = form.cleaned_data.get('account_balance')
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
@@ -75,27 +76,14 @@ def create_expense(request):
         if form.is_valid():
             expense = form.save(commit=False)
             expense.user = request.user
+            user = request.user
+            user.profile.account_balance = user.profile.account_balance - expense.amount
+            user.save()
             expense.save()
             return redirect('expense_list')
     else:
         form = ExpenseForm(request.user)
     return render(request, 'new_expense.html', {'form': form})
-
-# def show_categories(request):
-# 	categories = Category.objects.all()
-#     expenses  = Expense.objects.all()
-#     total_per_category = []
-    
-#     for category in categories:
-#         total = 0
-#         for expense in expenses:
-#             if expense.category == category:
-#                 total += expense.amount
-#         total_per_category.append(total) # vetor com o total gasto em cada categoria
-    
-#     print(total_per_category)
-    
-# 	return render(request, 'categories.html', {'categories': categories, 'total_per_category': total_per_category})
 
 def show_categories(request):
     categories = Category.objects.filter(user = request.user)
@@ -119,35 +107,28 @@ def index_profile(request):
     queryset_categories = Category.objects.filter(user = request.user) # todas as categorias do usuario
     name_categories = [obj.name for obj in queryset_categories] # lista com o nome das categorias
     
-    expenses  = Expense.objects.all().order_by('date')
+    queryset_expenses  = Expense.objects.all().order_by('date')
+    amount_expenses = [obj.amount for obj in queryset_expenses]
+    date_expenses = [obj.date for obj in queryset_expenses]
     
     total_per_category = []
 
-    expenses_amount = []
-    expenses_date = []
-    
-    expenses_per_category = []
-    dates_per_category = []
-    
     for category in queryset_categories:
         total = 0
-        for expense in expenses:
+        for expense in queryset_expenses:
             if expense.category == category:
                 total += expense.amount
-                expenses_per_category.append(expense.amount)
-                dates_per_category.append(expense.date)
-        expenses_amount.append(expenses_per_category)
-        expenses_date.append(dates_per_category)
         total_per_category.append(total) # vetor com o total gasto em cada categoria
-        expenses_per_category=[]
-        dates_per_category=[]
     
 
     test = [total_per_category, name_categories]
     context = {
          'name_categories': json.dumps(name_categories),
          'total_per_category': json.dumps(total_per_category),
-         'test': json.dumps(test),
+
+         'amount_expenses': json.dumps(amount_expenses),
+         'date_expenses': json.dumps(date_expenses, default=str),
+        #  'test': json.dumps(test),
 
         # DOIS VETORES DE VETORES, UM DELES COM TODOS OS VALORES GASTOS POR CATEGORIA E O OUTRO COM AS RESPECTIVAS DATAS, TUDO ORGANIZADO POR DATA 
         #  'amounts_per_category': json.dumps(expenses_amount),

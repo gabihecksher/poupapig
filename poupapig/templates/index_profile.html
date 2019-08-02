@@ -3,11 +3,22 @@
 
 {% block content %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <div class="chart-container" style="position: relative; height:20vh; width:40vw">
+    <div class="chart-container" style="position: relative; height:20vh; width:40vw; margin:20px;">
         <canvas id="chart"></canvas><br><br>
     </div>
 
-    <canvas id="category_chart" ></canvas>
+    
+    <div style="background-color: rgba(255, 250, 250, 0.8); width: 200px; border-radius: 15px; margin-left: 60%; padding: 20px;">
+        <h2>Saldo atual:</h2>
+        <h3>R$ {{user.profile.account_balance}}</h3>
+    </div>
+    
+    <div class="chart-container" style="position: relative; height:20vh; width:40vw; margin:20px;">
+        <canvas id="balanceChart" width="100" height="100"></canvas>
+    </div>
+
+
+
     <script type="text/javascript">
 
         // GRAFICO QUE MOSTRA O TOTAL GASTO EM CADA CATEGORIA
@@ -15,6 +26,7 @@
         var names = JSON.parse('{{ name_categories|safe }}');
         var prices = JSON.parse('{{ total_per_category|safe }}');
         ctx.style.backgroundColor = 'rgba(255,255,255, 0.7)';
+        
         var chart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -52,18 +64,18 @@
             }
         });
 
-        // // GRAFICO QUE MOSTRA O QUANTO FOI GASTO EM UMA CATEGORIA AO LONGO DO TEMPO
-        var category_chart = document.getElementById("category_chart");
-        var dates = JSON.parse('{{ test.0|safe }}');
-        var prices = JSON.parse('{{ test.1|safe }}');
-        category_chart.style.backgroundColor = 'rgba(255,255,255, 0.7)';
-        var chart = new Chart(category_chart, {
+
+        var ctx2 = document.getElementById('balanceChart');
+        ctx2.style.backgroundColor = 'rgba(255,255,255, 0.7)';
+        var amounts = JSON.parse('{{ amount_expenses|safe }}');
+        var dates = JSON.parse('{{ date_expenses|safe }}');
+        var myChart = new Chart(ctx2, {
             type: 'line',
             data: {
                 labels: dates,
                 datasets: [{
-                    label: 'Categoria',
-                    data: prices,
+                    label: '# of Votes',
+                    data: amounts,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -73,26 +85,28 @@
                         'rgba(255, 159, 64, 0.2)'
                     ],
                     borderColor: [
-                        'rgba(255,99,132,1)',
+                        'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
                         'rgba(255, 159, 64, 1)'
                     ],
-                    borderWidth: 3
+                    borderWidth: 1
                 }]
             },
             options: {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true
+                            beginAtZero: true
                         }
                     }]
                 }
             }
         });
+
+        
     </script>
 
 {%  endblock %}
